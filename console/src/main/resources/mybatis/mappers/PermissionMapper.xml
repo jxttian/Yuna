@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.myscloud.open.yuna.mapper.PermissionMapper">
+    <resultMap id="BaseResultMap" type="net.myscloud.open.yuna.model.Permission">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="sid" jdbcType="VARCHAR" property="sid"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="type" jdbcType="BIT" property="type"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+        <result column="regular" jdbcType="VARCHAR" property="regular"/>
+        <result column="rank" jdbcType="INTEGER" property="rank"/>
+        <result column="enable" jdbcType="BIT" property="enable"/>
+        <result column="creation_time" jdbcType="TIMESTAMP" property="creationTime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="modification_time" jdbcType="TIMESTAMP" property="modificationTime"/>
+        <result column="modifier" jdbcType="INTEGER" property="modifier"/>
+        <result column="memo" jdbcType="VARCHAR" property="memo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, pid, sid, code, `type`, icon, `name`, `value`, `regular`, `rank`, `enable`, creation_time,
+        creator, modification_time, modifier, memo
+    </sql>
+    <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_permission
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from tb_permission where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="net.myscloud.open.yuna.model.Permission">
+        insert into tb_permission (pid, sid,
+          code, `type`, icon, `name`, `value`,`regular`,
+          `rank`, `enable`, creation_time,
+          creator, modification_time, modifier,
+          memo)
+        values (#{pid,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER},
+          #{code,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{icon,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{regular,jdbcType=VARCHAR},
+          #{rank,jdbcType=INTEGER}, #{enable,jdbcType=BIT}, #{creationTime,jdbcType=TIMESTAMP},
+          #{creator,jdbcType=INTEGER}, #{modificationTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=INTEGER},
+          #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="net.myscloud.open.yuna.model.Permission">
+        insert into tb_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="sid != null">
+                sid,
+            </if>
+            <if test="code != null">
+                code,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="icon != null">
+                `icon`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="value != null">
+                `value`,
+            </if>
+            <if test="regular != null">
+                `regular`,
+            </if>
+            <if test="rank != null">
+                `rank`,
+            </if>
+            <if test="enable != null">
+                `enable`,
+            </if>
+            <if test="creationTime != null">
+                creation_time,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="modificationTime != null">
+                modification_time,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="sid != null">
+                #{sid,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=BIT},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=BIT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="regular != null">
+                #{regular,jdbcType=VARCHAR},
+            </if>
+            <if test="rank != null">
+                #{rank,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                #{enable,jdbcType=BIT},
+            </if>
+            <if test="creationTime != null">
+                #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="modificationTime != null">
+                #{modificationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                #{modifier,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateSelective" parameterType="net.myscloud.open.yuna.model.Permission">
+        update tb_permission
+        <set>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="sid != null">
+                sid = #{sid,jdbcType=INTEGER},
+            </if>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=BIT},
+            </if>
+            <if test="icon != null">
+                `icon` = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                `value` = #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="regular != null">
+                `regular` = #{regular,jdbcType=VARCHAR},
+            </if>
+            <if test="rank != null">
+                `rank` = #{rank,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                `enable` = #{enable,jdbcType=BIT},
+            </if>
+            <if test="creationTime != null">
+                creation_time = #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="modificationTime != null">
+                modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="update" parameterType="net.myscloud.open.yuna.model.Permission">
+        update tb_permission
+        set pid = #{pid,jdbcType=INTEGER},
+          sid = #{sid,jdbcType=INTEGER},
+          code = #{code,jdbcType=VARCHAR},
+          `type` = #{type,jdbcType=BIT},
+          `icon` = #{icon,jdbcType=VARCHAR},
+          `name` = #{name,jdbcType=VARCHAR},
+          `value` = #{value,jdbcType=VARCHAR},
+          `regular` = #{regular,jdbcType=VARCHAR},
+          `rank` = #{rank,jdbcType=INTEGER},
+          `enable` = #{enable,jdbcType=BIT},
+          creation_time = #{creationTime,jdbcType=TIMESTAMP},
+          creator = #{creator,jdbcType=INTEGER},
+          modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+          modifier = #{modifier,jdbcType=INTEGER},
+          memo = #{memo,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <sql id="Page_Condition_SQL">
+        <where>
+            <if test="name != null">
+                and `name` like '%${name}%'
+            </if>
+            <if test="code != null">
+                and code like #{code}
+            </if>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="net.myscloud.open.yuna.bean.search.PermissionSearch" resultType="java.lang.Long">
+        select count(1)
+        from tb_permission
+        <include refid="Page_Condition_SQL"/>
+    </select>
+
+    <select id="page" parameterType="net.myscloud.open.yuna.bean.search.PermissionSearch" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_permission
+        <include refid="Page_Condition_SQL"/>
+        order by ${sort} ${order}
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="getByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_permission
+        <where>
+            code like #{code}
+        </where>
+        limit 1;
+    </select>
+</mapper>

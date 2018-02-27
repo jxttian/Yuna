@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.myscloud.open.yuna.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="net.myscloud.open.yuna.model.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="roles" jdbcType="VARCHAR" property="roles"/>
+        <result column="flags" jdbcType="INTEGER" property="flags"/>
+        <result column="enable" jdbcType="BIT" property="enable"/>
+        <result column="creation_time" jdbcType="TIMESTAMP" property="creationTime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="modification_time" jdbcType="TIMESTAMP" property="modificationTime"/>
+        <result column="modifier" jdbcType="INTEGER" property="modifier"/>
+        <result column="memo" jdbcType="VARCHAR" property="memo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, email, phone, `password`, nickname, tags,roles, flags, `enable`, creation_time, creator,
+        modification_time, modifier, memo
+    </sql>
+    <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <insert id="insert" parameterType="net.myscloud.open.yuna.model.User">
+        insert into tb_user (email, phone,
+          `password`, nickname, tags,roles,
+          flags, `enable`, creation_time,
+          creator, modification_time, modifier,
+          memo)
+        values (#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+          #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{roles,jdbcType=VARCHAR},
+          #{flags,jdbcType=INTEGER}, #{enable,jdbcType=BIT}, #{creationTime,jdbcType=TIMESTAMP},
+          #{creator,jdbcType=INTEGER}, #{modificationTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=INTEGER},
+          #{memo,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="net.myscloud.open.yuna.model.User">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="tags != null">
+                tags,
+            </if>
+            <if test="roles != null">
+                roles,
+            </if>
+            <if test="flags != null">
+                flags,
+            </if>
+            <if test="enable != null">
+                `enable`,
+            </if>
+            <if test="creationTime != null">
+                creation_time,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="modificationTime != null">
+                modification_time,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="tags != null">
+                #{tags,jdbcType=VARCHAR},
+            </if>
+            <if test="roles != null">
+                #{roles,jdbcType=VARCHAR},
+            </if>
+            <if test="flags != null">
+                #{flags,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                #{enable,jdbcType=BIT},
+            </if>
+            <if test="creationTime != null">
+                #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="modificationTime != null">
+                #{modificationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                #{modifier,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateSelective" parameterType="net.myscloud.open.yuna.model.User">
+        update tb_user
+        <set>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="tags != null">
+                tags = #{tags,jdbcType=VARCHAR},
+            </if>
+            <if test="roles != null">
+                roles = #{roles,jdbcType=VARCHAR},
+            </if>
+            <if test="flags != null">
+                flags = #{flags,jdbcType=INTEGER},
+            </if>
+            <if test="enable != null">
+                `enable` = #{enable,jdbcType=BIT},
+            </if>
+            <if test="creationTime != null">
+                creation_time = #{creationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="modificationTime != null">
+                modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="update" parameterType="net.myscloud.open.yuna.model.User">
+        update tb_user
+        set email = #{email,jdbcType=VARCHAR},
+          phone = #{phone,jdbcType=VARCHAR},
+          `password` = #{password,jdbcType=VARCHAR},
+          nickname = #{nickname,jdbcType=VARCHAR},
+          tags = #{tags,jdbcType=VARCHAR},
+          roles = #{roles,jdbcType=VARCHAR},
+          flags = #{flags,jdbcType=INTEGER},
+          `enable` = #{enable,jdbcType=BIT},
+          creation_time = #{creationTime,jdbcType=TIMESTAMP},
+          creator = #{creator,jdbcType=INTEGER},
+          modification_time = #{modificationTime,jdbcType=TIMESTAMP},
+          modifier = #{modifier,jdbcType=INTEGER},
+          memo = #{memo,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <sql id="Page_Condition_SQL">
+        <where>
+            <if test="email != null">
+                and email like #{email}
+            </if>
+            <if test="phone != null">
+                and phone like #{phone}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="net.myscloud.open.yuna.bean.search.UserSearch" resultType="java.lang.Long">
+        select count(1)
+        from tb_user
+        <include refid="Page_Condition_SQL"/>
+    </select>
+
+    <select id="page" parameterType="net.myscloud.open.yuna.bean.search.UserSearch" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_user
+        <include refid="Page_Condition_SQL"/>
+        order by ${sort} ${order}
+        limit #{offset},#{limit};
+    </select>
+
+    <select id="getByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_user
+        <where>
+            email like #{email}
+        </where>
+        limit 1;
+    </select>
+
+    <select id="getByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_user
+        <where>
+            phone like #{phone}
+        </where>
+        limit 1;
+    </select>
+</mapper>
