@@ -22,9 +22,10 @@ Yuna是一款
 
 简单使用说明
 -----------------------------------
-* 导入sql/init.sql文件到mysql数据库
+* 导入files/sql/init.sql文件到mysql数据库
 * 导入项目到IDE.
 * 修改console模块下配置文件
+
   ![配置文件](./files/screenshot/yuna_code_properties.png "配置文件")
   ![配置文件详情](./files/screenshot/yuna_code_properties_detail.png "配置文件详情")
 * 启动项目,管理员账号在数据库中设置
