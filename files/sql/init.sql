@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.6.35 - MySQL Community Server (GPL)
--- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  9.4.0.5125
+-- 服务器版本:                        5.7.20-log - MySQL Community Server (GPL)
+-- 服务器操作系统:                      Win64
+-- HeidiSQL 版本:                  9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,7 +34,12 @@ CREATE TABLE IF NOT EXISTS `tb_business_system` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 数据导出被取消选择。
+-- 正在导出表  yuna.tb_business_system 的数据：~1 rows (大约)
+/*!40000 ALTER TABLE `tb_business_system` DISABLE KEYS */;
+INSERT INTO `tb_business_system` (`id`, `code`, `name`, `domain`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES
+	(1, 'system', '系统管理', 'http://cms.company.net:8080', 999, 1, '2017-04-11 11:23:50', NULL, '2017-04-11 11:23:52', NULL, NULL);
+/*!40000 ALTER TABLE `tb_business_system` ENABLE KEYS */;
+
 -- 导出  表 yuna.tb_permission 结构
 CREATE TABLE IF NOT EXISTS `tb_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -57,7 +62,15 @@ CREATE TABLE IF NOT EXISTS `tb_permission` (
   UNIQUE KEY `system_code_code_uindex` (`sid`,`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 数据导出被取消选择。
+-- 正在导出表  yuna.tb_permission 的数据：~4 rows (大约)
+/*!40000 ALTER TABLE `tb_permission` DISABLE KEYS */;
+INSERT INTO `tb_permission` (`id`, `pid`, `sid`, `code`, `type`, `icon`, `name`, `value`, `regular`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES
+	(1, 0, 1, 'business_system', 1, 'fa fa-gears', '业务系统', '/system/index.html', '/system/', 999, 1, '2017-04-11 11:27:54', NULL, '2017-04-19 11:04:42', 2, NULL),
+	(2, 0, 1, 'user', 1, 'fa fa-users', '用户管理', '/user/index.html', '/user/', 996, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:05:09', 2, NULL),
+	(3, 0, 1, 'permission', 1, 'fa fa-user-secret', '权限管理', '/permission/index.html', '/permission/', 998, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:04:53', 2, NULL),
+	(4, 0, 1, 'role', 1, 'fa fa-sitemap', '角色管理', '/role/index.html', '/role/', 997, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:05:02', 2, NULL);
+/*!40000 ALTER TABLE `tb_permission` ENABLE KEYS */;
+
 -- 导出  表 yuna.tb_role 结构
 CREATE TABLE IF NOT EXISTS `tb_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -75,7 +88,12 @@ CREATE TABLE IF NOT EXISTS `tb_role` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 数据导出被取消选择。
+-- 正在导出表  yuna.tb_role 的数据：~1 rows (大约)
+/*!40000 ALTER TABLE `tb_role` DISABLE KEYS */;
+INSERT INTO `tb_role` (`id`, `code`, `name`, `permissions`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES
+	(1, 'ADMIN', '管理员', '1,2,3,4', 1, NULL, NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `tb_role` ENABLE KEYS */;
+
 -- 导出  表 yuna.tb_user 结构
 CREATE TABLE IF NOT EXISTS `tb_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -97,15 +115,12 @@ CREATE TABLE IF NOT EXISTS `tb_user` (
   UNIQUE KEY `phone_UNIQUE` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 数据导出被取消选择。
+-- 正在导出表  yuna.tb_user 的数据：~1 rows (大约)
+/*!40000 ALTER TABLE `tb_user` DISABLE KEYS */;
+INSERT INTO `tb_user` (`id`, `email`, `phone`, `password`, `nickname`, `tags`, `roles`, `flags`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES
+	(1, 'admin@company.net', '18768121212', '25d55ad283aa400af464c76d713c07ad', 'Admin', NULL, '1', NULL, 1, NULL, NULL, NULL, NULL, NULL);
+/*!40000 ALTER TABLE `tb_user` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-
-
-INSERT INTO `tb_business_system` (`code`, `name`, `domain`, `rank`, `creation_time`, `modification_time`) VALUES ('system', '系统管理', 'http://cms.yuna.com:8080', '999', '2017-04-11 11:23:50', '2017-04-11 11:23:52');
-
-INSERT INTO `tb_permission` (`pid`, `sid`, `code`, `type`, `icon`, `name`, `value`, `regular`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES (0, 3, 'business_system', 1, 'fa fa-gears', '业务系统', '/system/index.html', '/system/', 999, 1, '2017-04-11 11:27:54', NULL, '2017-04-19 11:04:42', 2, NULL);
-INSERT INTO `tb_permission` (`pid`, `sid`, `code`, `type`, `icon`, `name`, `value`, `regular`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES (0, 3, 'user', 1, 'fa fa-users', '用户管理', '/user/index.html', '/user/', 996, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:05:09', 2, NULL);
-INSERT INTO `tb_permission` (`pid`, `sid`, `code`, `type`, `icon`, `name`, `value`, `regular`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES (0, 3, 'permission', 1, 'fa fa-user-secret', '权限管理', '/permission/index.html', '/permission/', 998, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:04:53', 2, NULL);
-INSERT INTO `tb_permission` (`pid`, `sid`, `code`, `type`, `icon`, `name`, `value`, `regular`, `rank`, `enable`, `creation_time`, `creator`, `modification_time`, `modifier`, `memo`) VALUES (0, 3, 'role', 1, 'fa fa-sitemap', '角色管理', '/role/index.html', '/role/', 997, 1, '2017-04-11 15:23:04', NULL, '2017-04-19 11:05:02', 2, NULL);
