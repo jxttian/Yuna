@@ -23,18 +23,6 @@
         </triggeringPolicy>
     </appender>
 
-    <appender name="Kafka" class="net.myscloud.plugin.logging.logback.LogbackAppender">
-        <buildStrategy class="net.myscloud.plugin.logging.logback.build.KafkaBuildStrategy">
-            <config class="net.myscloud.plugin.logging.logback.config.KafkaConfig">
-                <addresses>${log.remote.addresses}</addresses>
-                <topic>${log.remote.topic}</topic>
-            </config>
-        </buildStrategy>
-        <deliveryStrategy
-                class="net.myscloud.plugin.logging.logback.delivery.AsynchronousDeliveryStrategy"/>
-        <source>${log.remote.source}</source>
-    </appender>
-
     <logger name="net.myscloud.open.yuna">
         <level value="${log.yuna.level}"/>
     </logger>
